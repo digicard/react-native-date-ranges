@@ -226,7 +226,9 @@ export default class DateRange extends Component {
                 </Text>
                 <Text style={styles.headTitleText} />
                 <Text style={headerDate}>
-                  {this.state.clearEnd ? this.state.clearEnd : this.state.textEndDate}
+                  {this.state.clearEnd ?this.props.lang === 'en' ? this.state.clearEnd : this.state.clearEnd.replace(/Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec/gi, function (matched) {
+                    return monthshortEs[matched];
+                  }) : this.state.textEndDate}
                 </Text>
               </View>
             </View>
