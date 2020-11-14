@@ -50,34 +50,47 @@ const interval = max - min + 1;
 const rangeArray = Array.from(new Array(interval), (val, index) => index + min);
 
 const monthEn = {
-  January:"January",
-  February:"February",
-  March:"March",
-  April:"April",
-  May:"May",
-  June:"June",
-  July:"July",
-  August:"August",
-  September:"September",
-  October:"October",
-  November:"November",
-  December:"December"
+  January: "January",
+  February: "February",
+  March: "March",
+  April: "April",
+  May: "May",
+  June: "June",
+  July: "July",
+  August: "August",
+  September: "September",
+  October: "October",
+  November: "November",
+  December: "December"
 }
 const monthEs = {
-  January:"Enero",
-  February:"Febrero",
-  March:"Marzo",
-  April:"Abril",
-  May:"Mayo",
-  June:"Junio",
-  July:"Julio",
-  August:"Agosto",
-  September:"Septiembre",
-  October:"Octubre",
-  November:"Noviembre",
-  December:"Diciembre"
+  January: "Enero",
+  February: "Febrero",
+  March: "Marzo",
+  April: "Abril",
+  May: "Mayo",
+  June: "Junio",
+  July: "Julio",
+  August: "Agosto",
+  September: "Septiembre",
+  October: "Octubre",
+  November: "Noviembre",
+  December: "Diciembre"
 }
-
+const monthshortEs = {
+  Jan: "Ene",
+  Feb: "Feb",
+  Mar: "Mar",
+  Apr: "Abr",
+  May: "May",
+  Jun: "Jun",
+  Jul: "Jul",
+  Aug: "Ago",
+  Sep: "Sep",
+  Oct: "Oct",
+  November: "Nov",
+  Dec: "Dic"
+}
 
 export default class DateRange extends Component {
   constructor(props) {
@@ -207,7 +220,9 @@ export default class DateRange extends Component {
               <Text style={markTitle}>{markText}</Text>
               <View style={styles.dateContainer}>
                 <Text style={headerDate}>
-                  {this.state.clearStart ? this.state.clearStart : this.state.textStartDate}
+                  {this.state.clearStart ? this.props.lang === 'en' ? this.state.clearStart : this.state.clearStart.replace(/Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec/gi, function (matched) {
+                    return monthshortEs[matched];
+                  }) : this.state.textStartDate}
                 </Text>
                 <Text style={styles.headTitleText} />
                 <Text style={headerDate}>
@@ -234,7 +249,7 @@ export default class DateRange extends Component {
               <Text
                 style={{ fontSize: 20, color: "black", fontWeight: "bold" }}
               >
-                {this.props.lang === 'en'? monthEn[this.state.focusedMonth.format("MMMM YYYY").split(' ')[0]] :monthEs[this.state.focusedMonth.format("MMMM YYYY").split(' ')[0]] + ' '+ this.state.focusedMonth.format("MMMM YYYY").split(' ')[1]}
+                {this.props.lang === 'en' ? monthEn[this.state.focusedMonth.format("MMMM YYYY").split(' ')[0]] : monthEs[this.state.focusedMonth.format("MMMM YYYY").split(' ')[0]] + ' ' + this.state.focusedMonth.format("MMMM YYYY").split(' ')[1]}
               </Text>
               <TouchableOpacity onPress={this.nextMonth}>
                 <Text
