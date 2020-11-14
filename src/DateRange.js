@@ -49,6 +49,36 @@ const max = 2100;
 const interval = max - min + 1;
 const rangeArray = Array.from(new Array(interval), (val, index) => index + min);
 
+const monthEn = {
+  January:"January",
+  February:"February",
+  March:"March",
+  April:"April",
+  May:"May",
+  June:"June",
+  July:"July",
+  August:"August",
+  September:"September",
+  October:"October",
+  November:"November",
+  December:"December"
+}
+const monthEs = {
+  January:"Enero",
+  February:"Febrero",
+  March:"Marzo",
+  April:"Abril",
+  May:"Mayo",
+  June:"Junio",
+  July:"Julio",
+  August:"Agosto",
+  September:"Septiembre",
+  October:"Octubre",
+  November:"Noviembre",
+  December:"Diciembre"
+}
+
+
 export default class DateRange extends Component {
   constructor(props) {
     super(props);
@@ -204,7 +234,7 @@ export default class DateRange extends Component {
               <Text
                 style={{ fontSize: 20, color: "black", fontWeight: "bold" }}
               >
-                {this.state.focusedMonth.format("MMMM YYYY")}
+                {this.props.lang === 'en'? monthEn[this.state.focusedMonth.format("MMMM YYYY").split(' ')[0]] :monthEs[this.state.focusedMonth.format("MMMM YYYY").split(' ')[0]] + ' '+ this.state.focusedMonth.format("MMMM YYYY").split(' ')[1]}
               </Text>
               <TouchableOpacity onPress={this.nextMonth}>
                 <Text
