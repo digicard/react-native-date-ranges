@@ -88,7 +88,7 @@ const monthshortEs = {
   Aug: "Ago",
   Sep: "Sep",
   Oct: "Oct",
-  November: "Nov",
+  Nov: "Nov",
   Dec: "Dic"
 }
 
